@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles.css';
+import { Routes, Route, Link } from 'react-router-dom';
+import Hoc from './Hoc';
+import Default from './Default';
+import Hooks from './Hooks';
+import { todos } from './data';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Link to="/">Default</Link>
+      <Link to="/hoc">HOC</Link>
+      <Link to="/hooks">Hooks</Link>
+      <Routes>
+        <Route index element={<Default list={todos} />} />
+        <Route path="hoc" element={<Hoc list={todos} />} />
+        <Route path="hooks" element={<Hooks list={todos} />} />
+      </Routes>
     </div>
   );
 }
-
-export default App;
